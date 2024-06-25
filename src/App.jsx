@@ -133,58 +133,62 @@ function App() {
 
       </div>
       <hr className='h-[1px] bg-gray-200 w-[90%] m-auto'  />
+      
+     
+
       <div className='flex p-0 md:p-8'>
-  <div className='flex-[2]'>
-    {data
-      .filter(post => selectedCardType === 'All Posts' || post.cardType.slice(2).trim() === selectedCardType)
-      .map((val, i) => {
-        console.log("Original cardType:", val.cardType);
-        console.log("Processed cardType:", val.cardType.slice(2).trim());
-        console.log(selectedCardType, "Selected type");
+      <div className='flex-[2]'>
+        {data
+          .filter(post => selectedCardType === 'All Posts' || post.cardType.slice(2).trim() === selectedCardType)
+          .map((val, i) => {
+            console.log("Original cardType:", val.cardType);
+            console.log("Processed cardType:", val.cardType.slice(2).trim());
+            console.log(selectedCardType, "Selected type");
 
-        return (
-          <Card
-            key={i}
-            cardImg={val.card_img}
-            avatarImg={val.avatarImg}
-            avatarName={val.avatarName}
-            cardType={val.cardType}
-            headings={val.headings}
-            desc={val.desc}
-            date={val.date}
-            jobTitle={val.job_title}
-            location={val.location}
-            views={val.views}
-          />
-        );
-      })}
-  </div>
-
-  <div className='flex-[1] pt-8 hidden flex-col gap-12 lg:flex'>
-    <div className='flex flex-col gap-8'>
-      <div className='flex items-center'>
-        <i className="bi bi-geo-alt"></i>
-        <input type="text" placeholder='Enter your location' className='p-2 outline-none focus:border-b-2 w-full' />
+            return (
+              <Card
+                key={i}
+                cardImg={val.card_img}
+                avatarImg={val.avatarImg}
+                avatarName={val.avatarName}
+                cardType={val.cardType}
+                headings={val.headings}
+                desc={val.desc}
+                date={val.date}
+                jobTitle={val.job_title}
+                location={val.location}
+                views={val.views}
+              />
+            );
+          })}
       </div>
-      <div className='flex gap-2'>
-        <i className="bi bi-info-circle"></i>
-        <p className='text-gray-500 w-[70%]'>Your location will help us serve better and extend a personalised experience.</p>
+
+      {/* This div will be hidden on screens smaller than 1024px */}
+      <div className='flex-[1] pt-8 flex-col gap-12 lg:flex hidden'>
+        <div className='flex flex-col gap-8'>
+          <div className='flex items-center'>
+            <i className="bi bi-geo-alt"></i>
+            <input type="text" placeholder='Enter your location' className='p-2 outline-none focus:border-b-2 w-full' />
+          </div>
+          <div className='flex gap-2'>
+            <i className="bi bi-info-circle"></i>
+            <p className='text-gray-500 w-[70%]'>Your location will help us serve better and extend a personalised experience.</p>
+          </div>
+        </div>
+        <div className='flex flex-col gap-8 p-4'>
+          <p className='flex gap-2'>
+            <i className="bi bi-hand-thumbs-up-fill"></i>
+            RECOMMENDED GROUPS
+          </p>
+          <div className='mt-8 flex flex-col gap-8'>
+            {data.map((val, i) => (
+              <GroupCard groupImg={val.avatarImg} groupName={"Leisure"} key={i} />
+            ))}
+          </div>
+          <p className='text-end text-blue-700 mt-4 cursor-pointer'>See more...</p>
+        </div>
       </div>
     </div>
-    <div className='lg:hidden'>
-      <p className='flex gap-2'>
-        <i className="bi bi-hand-thumbs-up-fill"></i>
-        RECOMMENDED GROUPS
-      </p>
-      <div className='mt-8 flex flex-col gap-8 p-4'>
-        {data.map((val, i) => (
-          <GroupCard groupImg={val.avatarImg} groupName={"Leisure"} key={i} />
-        ))}
-      </div>
-      <p className='text-end text-blue-700 mt-4 cursor-pointer'>See more...</p>
-    </div>
-  </div>
-</div>
 </>
   ) }
 
