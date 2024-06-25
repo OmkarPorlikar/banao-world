@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.option-grp::after{
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    content: "";
+    width: calc(1rem*4);
+    height: 2px;
+    background-color: rgb(136, 132, 132);
+}
+
+.card-container{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-color: #E0E0E0;
+}
